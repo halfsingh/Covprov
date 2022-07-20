@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+
+<html xmlns:th="http://www.thymeleaf.org">
+
+
+<head>
+    <title>CoronaVirus Tracker Application</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.1/dist/css/bootstrap.min.css" integrity="sha384-zCbKRCUGaJDkqS1kPbPd7TveP5iyJE0EjAuZQTgFLD2ylzuqKfdKlfG/eSrtxUkn" crossorigin="anonymous">
+    <link rel="stylesheet" href="/home.css">
+</head>
+
+<body>
+<div class="container">
+<h1>CoronaVirus Tracker Application</h1>
+<p>This application lists current CoronaVirus cases around the world</p>
+
+
+    <div class="row">
+            <div class="jumbotron text-center col-md-6">
+                <h1 class="display-4" th:text="${totalReportedCases}"></h1>
+                <p class="lead">Total cases reported as of today.</p>
+                <p>Data pulled from Johns Hopkins Center for Systems Science and Engineering Github.</p>
+                <a class="btn btn-primary btn-lg" href="https://github.com/CSSEGISandData/COVID-19" role="button">Learn more</a>
+            </div>
+
+            <div class="jumbotron text-center col-md-6">
+                <h1 class="display-4" th:text="${totalnewcases}"></h1>
+                <p>New Cases reported since previous day.</p>
+                <p>Data pulled from Johns Hopkins Center for Systems Science and Engineering Github.</p>
+                <a class="btn btn-primary btn-lg" href="https://github.com/CSSEGISandData/COVID-19" role="button">Learn more</a>
+            </div>
+    </div>
+
+
+<table class="table">
+    <tr>
+        <th>State</th>
+        <th>Country</th>
+        <th>Total Cases Reported</th>
+        <th>Changes Since Last Day</th>
+    </tr>
+    <tr th:each="locationStat : ${locationStats}">
+        <td th:text="${locationStat.state}"></td>
+        <td th:text="${locationStat.country}"></td>
+        <td th:text="${locationStat.latestTotalCases}">0</td>
+        <td th:text="${locationStat.difffromprevday}">0</td>
+    </tr>
+</table>
+
+
+<footer>
+    <p>Made by: Vijay Karan Singh</p>
+    <p><a href="https://www.github.com/halfsingh">Github</a></p>
+    <p4>This data and/or its validity is not endorsed by me personally.</p4>
+</footer>
+</div>
+</body>
+
+</html>
